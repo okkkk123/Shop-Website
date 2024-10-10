@@ -1,5 +1,6 @@
 * {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Lato', sans-serif;
+  margin: 0;
 }
 
 .navContainer {
@@ -8,30 +9,58 @@
   padding: 20px;
   box-shadow: 0 1px 3px -2px black;
   flex-wrap: wrap;
+  background-color: #003568;
+  color: aliceblue;
 }
 
 .nav-sections{
   display: flex;
-  gap: 55px;
-  align-items: center;
-  
+  gap: 65px;
+  align-items: center;  
 }
 
 .nav-sections li {
   list-style: none;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav-sections li a{
+  text-decoration: none;
+  color: inherit;
 }
  
  .nav-sections li hr{
   border: none;
-  background-color: rgb(216, 71, 71);
+  background-color: rgb(231, 221, 221);
   height: 3px;
-  width: 80%;
+  width: 115%;
+  border-radius: 10px;
  }
 
- .login-btn{
-   border-radius: 75px;
+ .signIn-btn{
+   border-radius: 10px;
+   background-color: #003568;
    outline: none;
    padding: 10px 15px;
-   border: solid black 2px;
+   border: solid white 1px;
+   color: white;
+   margin-right: 5px;
+ }
+
+ .signup-btn{
+  border-radius: 10px;
+  background-color: #003568;
+  outline: none;
+  padding: 10px 15px;
+  border: solid white 1px;
+  color: white;
+ }
+
+ .signIn-btn:hover,
+ .signup-btn:hover{
+  background-color: #1d5e9a;
+  cursor: pointer;
  }
