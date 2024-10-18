@@ -1,33 +1,50 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
 function Navbar() {
-  const [select, setSelect] = useState("Home");
+  const [select, setSelect] = useState(()=>{
+    //either return the page in local storage or 'Home' (on first render)
+    return localStorage.getItem("selectedPage") || "Home";
+  });
 
   const handleMenuChange = (page) => {
     setSelect(page);
+    //saved the selected page into local storage
+    localStorage.setItem("selectedPage", page);
   }
+  //used for loading the selected page on component mount
+  useEffect(()=>
+  {
+   const savedPage = localStorage.getItem("selectedPage");
+
+   if(savedPage){
+    setSelect(savedPage);
+   }
+  }, []);
 
   return (
     <>
       <div className="navContainer">
-        <div>NAME OF SHOP</div>
+        <div>PixelRealm</div>
         <div className="nav-sections">
           
           <li to = "/" onClick={() => handleMenuChange("Home")}> 
              <Link to="/">Home</Link>{select === "Home" ? <hr /> : <> </>}  
           </li>
 
-          <li onClick = {()=> handleMenuChange("Products 1")}>
-            <Link to="/product1">Products 1</Link> {select === "Products 1" ? <hr/> : <></>}  </li>
+          <li onClick = {()=> handleMenuChange("Shop")}>
+            <Link to="/shop">Shop</Link> {select === "Shop" ? <hr/> : <></>}  </li>
 
-          <li onClick = {()=> handleMenuChange("Products 2")}>
-            <Link to='/product2'>Products 2</Link> 
-            {select === "Products 2" ? <hr/> : <></>} </li>
+          <li onClick = {()=> handleMenuChange("About")}>
+            <Link to='/About'> About</Link> 
+            {select === "About" ? <hr/> : <></>} </li>
 
         </div>
-    
-        <button className = 'login-btn'> LOGIN </button>
+        <div className='navButtons'>
+        <button className = 'signIn-btn'> Sign In </button>
+        <button className= 'signup-btn'>Sign Up</button>
+        </div>
+
       </div>
     </>
   );
